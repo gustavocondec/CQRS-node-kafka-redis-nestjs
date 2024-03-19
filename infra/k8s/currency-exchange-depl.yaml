@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency-exchange-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: currency-exchange
+  template:
+    metadata:
+      labels:
+        app: currency-exchange
+    spec:
+      containers:
+        - name: currency-exchange
+          image: gustavocondezo/currency-exchange
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://currency-exchange-mongo-srv:27017/currency-exchange'
+            - name: SERVICE_CONVERSION_URL
+              value: 'http://currency-conversion-srv:3000'
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: currency-exchange-srv
+spec:
+  selector:
+    app: currency-exchange
+    type: ClusterIP
+  ports:
+    - name: currency-exchange
+      protocol: TCP
+      port: 4000
+      targetPort: 4000

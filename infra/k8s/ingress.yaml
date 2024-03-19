@@ -1,0 +1,19 @@
+#apiVersion: networking.k8s.io/v1
+#kind: Ingress
+#metadata:
+#  name: ingress-service
+#  annotations:
+#    kubernetes.io/ingressClassName: nginx
+#    nginx.ingress.kubernetes.io/use-regex: 'true'
+#spec:
+#  rules:
+#    - host: local-currency.k.com
+#      http:
+#        paths:
+#          - path: /currency-exchange/?(.*)
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: currency-exchange-srv
+#                port:
+#                  number: 3000

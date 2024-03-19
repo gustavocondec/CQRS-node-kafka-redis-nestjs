@@ -1,0 +1,6 @@
+export enum TodoStatusEnum {
+  'CREATED' = 'CREATED',
+  IN_PROGRESS = 'IN_PROGRESS',
+  FINISHED = 'FINISHED',
+  CANCELED = 'CANCELED',
+}

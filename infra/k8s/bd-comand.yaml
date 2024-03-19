@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bd-command-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bd-command
+  template:
+    metadata:
+      labels:
+        app: bd-command
+    spec:
+      containers:
+        - name: bd-command
+          image: mysql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bd-command-srv
+spec:
+  selector:
+    app: bd-command
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

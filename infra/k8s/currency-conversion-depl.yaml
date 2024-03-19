@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency-conversion-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: currency-conversion
+  template:
+    metadata:
+      labels:
+        app: currency-conversion
+    spec:
+      containers:
+        - name: currency-conversion
+          image: gustavocondezo/currency-conversion
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://currency-conversion-mongo-srv:27017/currency-conversion'
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: currency-conversion-srv
+spec:
+  selector:
+    app: currency-conversion
+  type: ClusterIP
+  ports:
+    - name: currency-conversion
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
