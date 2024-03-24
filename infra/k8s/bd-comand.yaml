@@ -15,6 +15,22 @@ spec:
       containers:
         - name: bd-command
           image: mysql
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "512m"
+            limits:
+              memory: "512Mi"
+              cpu: "512m"
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: 'root'
+          command:
+            - "/bin/sh"
+            - "-c"
+            - |
+              echo "CREATE DATABASE IF NOT EXISTS todo;" > /docker-entrypoint-initdb.d/init.sql
+              /usr/local/bin/docker-entrypoint.sh mysqld
 ---
 apiVersion: v1
 kind: Service
@@ -26,5 +42,5 @@ spec:
   ports:
     - name: db
       protocol: TCP
-      port: 27017
-      targetPort: 27017
+      port: 3306
+      targetPort: 3306

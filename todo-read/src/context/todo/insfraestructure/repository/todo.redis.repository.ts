@@ -12,7 +12,12 @@ export class TodoRedisRepository implements TodoRepository {
     return Promise.resolve([]);
   }
 
-  getTodoById(todoId: number): Promise<TodoEntity> {
-    return Promise.resolve(undefined) as unknown as Promise<TodoEntity>;
+  async getTodoById(todoId: number): Promise<TodoEntity | undefined> {
+    return this.cacheManager.get(String(todoId));
+  }
+
+  async saveTodo(data: TodoEntity) {
+    console.log('deae', data);
+    await this.cacheManager.set(String(data.id), data);
   }
 }

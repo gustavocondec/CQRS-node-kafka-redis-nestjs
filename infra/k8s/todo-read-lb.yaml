@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-read-lb
+spec:
+  selector:
+    app: todo-read
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 3000
+  type: LoadBalancer

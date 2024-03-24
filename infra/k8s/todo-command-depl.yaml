@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-command-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-command
+  template:
+    metadata:
+      labels:
+        app: todo-command
+    spec:
+      containers:
+        - name: todo-command
+          image: gustavocondezo/todo-command:latest
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "512m"
+            limits:
+              memory: "512Mi"
+              cpu: "512m"
+          env:
+            - name: PORT
+              value: '3000'
+            - name: BD_HOST
+              value: 'bd-command-srv'
+            - name: BD_PORT
+              value: '3306'
+#---
+#
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: todo-command-srv
+#spec:
+#  selector:
+#    app: todo-command
+#  type: ClusterIP
+#  ports:
+#    - name: todo-command
+#      protocol: TCP
+#      port: 3000
+#      targetPort: 3000

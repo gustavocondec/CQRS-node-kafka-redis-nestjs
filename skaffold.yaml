@@ -8,16 +8,16 @@ build:
   local:
     push: false
   artifacts:
-    - image: gustavocondezo/currency-conversion
-      context: backend/currency-conversion #Caarpeta donde esta
+    - image: gustavocondezo/todo-command
+      context: todo-command #Caarpeta donde esta
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: gustavocondezo/currency-exchange
-      context: backend/currency-exchange
+    - image: gustavocondezo/todo-read
+      context: todo-read
       docker:
         dockerfile: Dockerfile
       sync:

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ContextModule } from './context/context.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { redisStore } from 'cache-manager-redis-yet';
+import * as process from 'process';
 
 @Module({
   imports: [
@@ -11,8 +12,8 @@ import { redisStore } from 'cache-manager-redis-yet';
       useFactory: async () => ({
         store: await redisStore({
           socket: {
-            host: 'localhost',
-            port: 6379,
+            host: process.env.BD_HOST,
+            port: Number(process.env.BD_PORT),
           },
         }),
       }),

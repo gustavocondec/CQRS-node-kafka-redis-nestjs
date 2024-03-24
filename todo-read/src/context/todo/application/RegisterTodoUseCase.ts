@@ -7,5 +7,13 @@ export class RegisterTodoUseCase {
 
   async registerTodo(data: RegisterTodoDto) {
     const date = new Date();
+    await this.todoRepository.saveTodo({
+      id: 1,
+      status: TodoStatusEnum.CREATED,
+      updated_at: date,
+      title: 'asas',
+      created_at: date,
+      description: 'sa',
+    });
   }
 }
