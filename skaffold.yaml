@@ -24,3 +24,13 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+
+    - image: gustavocondezo/todo-sync
+      context: todo-sync
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+
