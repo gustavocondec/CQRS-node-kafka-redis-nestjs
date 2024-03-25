@@ -3,6 +3,6 @@ import { EventModule } from './event/EventModule';
 
 @Global()
 @Module({
-  imports: [],
+  imports: [EventModule],
 })
 export class SharedModule {}

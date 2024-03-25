@@ -17,10 +17,11 @@ async function bootstrap() {
     options: {
       client: {
         brokers: [process.env.KAFKA_BROKER!],
+        clientId: 'todo-command-client',
       },
     },
   });
-  //await app.startAllMicroservices();
+  await app.startAllMicroservices();
 
   await app.listen(3000);
 }

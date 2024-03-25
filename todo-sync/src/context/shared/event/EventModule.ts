@@ -24,7 +24,7 @@ import { Partitioners } from 'kafkajs';
             createPartitioner: Partitioners.DefaultPartitioner,
           },
           run: {
-            autoCommit: true,
+            autoCommit: false,
           },
         },
       },
