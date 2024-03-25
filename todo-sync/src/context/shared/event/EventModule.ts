@@ -15,10 +15,10 @@ import { Partitioners } from 'kafkajs';
         options: {
           client: {
             brokers: [process.env.KAFKA_BROKER!],
-            clientId: 'antifraud-client-producer',
+            clientId: 'todo-sync-client',
           },
           consumer: {
-            groupId: 'micro-anti-fraud',
+            groupId: 'todo-sync-consumer',
           },
           producer: {
             createPartitioner: Partitioners.DefaultPartitioner,

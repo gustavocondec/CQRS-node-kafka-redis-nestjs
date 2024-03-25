@@ -5,7 +5,6 @@ import { TodoRedisRepository } from './repository/todo.redis.repository';
 import { ConsultTodoUseCaseImpl } from './services/ConsultTodoUseCaseImpl';
 
 @Module({
-  imports: [],
   controllers: [TodoController],
   providers: [
     RegisterTodoUseCaseImpl,
