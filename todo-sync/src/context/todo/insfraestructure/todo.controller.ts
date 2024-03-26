@@ -1,6 +1,5 @@
 import { Controller } from '@nestjs/common';
 import { RegisterTodoUseCaseImpl } from './services/RegisterTodoUseCaseImpl';
-import { ConsultTodoUseCaseImpl } from './services/ConsultTodoUseCaseImpl';
 import {
   Ctx,
   EventPattern,
@@ -10,14 +9,11 @@ import {
 
 @Controller()
 export class TodoController {
-  constructor(
-    private readonly registerTodoUseCase: RegisterTodoUseCaseImpl,
-    private readonly consultTodoUseCase: ConsultTodoUseCaseImpl,
-  ) {}
+  constructor(private readonly registerTodoUseCase: RegisterTodoUseCaseImpl) {}
 
   @EventPattern('todoCreated')
   async register(@Payload() data: any, @Ctx() ctx: KafkaContext) {
-    console.log('LLEGA EVENTO A SYNC', data);
+    console.log('LLEGA EVENTO A SYNC', new Date().toISOString());
     await this.registerTodoUseCase.registerTodo({ title: '', description: '' });
   }
 }
