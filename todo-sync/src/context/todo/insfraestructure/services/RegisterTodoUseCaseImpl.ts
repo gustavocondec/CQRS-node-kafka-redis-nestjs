@@ -4,7 +4,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class RegisterTodoUseCaseImpl extends RegisterTodoUseCase {
-  constructor(private readonly todoSqlRepository: TodoRedisRepository) {
-    super(todoSqlRepository);
+  constructor(private readonly todoRedisRepository: TodoRedisRepository) {
+    super(todoRedisRepository);
   }
 }

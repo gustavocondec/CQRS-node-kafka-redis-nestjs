@@ -1,9 +1,9 @@
-import { ConsultTodoUseCase } from '../../application/ConsultTodoUseCase';
-import { Injectable } from '@nestjs/common';
 import { TodoRedisRepository } from '../repository/todo.redis.repository';
+import { Injectable } from '@nestjs/common';
+import { UpdateTodoUseCase } from '../../application/UpdateTodoUseCase';
 
 @Injectable()
-export class ConsultTodoUseCaseImpl extends ConsultTodoUseCase {
+export class UpdateTodoUseCaseImpl extends UpdateTodoUseCase {
   constructor(private readonly todoRedisRepository: TodoRedisRepository) {
     super(todoRedisRepository);
   }

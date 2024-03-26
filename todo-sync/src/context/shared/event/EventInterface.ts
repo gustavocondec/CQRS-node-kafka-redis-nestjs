@@ -1,6 +1,8 @@
+import { EventEnum } from '../event-list/EventEnum';
+
 export interface EventInterface {
   attributes: {
-    topic: string;
+    topic: EventEnum;
     timestamp: Date;
   };
   data: Record<string, any>;

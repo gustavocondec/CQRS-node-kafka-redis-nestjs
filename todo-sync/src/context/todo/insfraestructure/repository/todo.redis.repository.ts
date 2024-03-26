@@ -11,4 +11,12 @@ export class TodoRedisRepository implements TodoRepository {
   async saveTodo(data: TodoEntity) {
     await this.cacheManager.set(String(data.id), data);
   }
+
+  async deleteTodo(todoId: number): Promise<void> {
+    await this.cacheManager.del(String(todoId));
+  }
+
+  async updateTodo(data: TodoEntity): Promise<void> {
+    await this.cacheManager.set(String(data.id), data);
+  }
 }

@@ -1,26 +1,13 @@
-import { Controller, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
-import { RegisterTodoUseCaseImpl } from './services/RegisterTodoUseCaseImpl';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { ConsultTodoUseCaseImpl } from './services/ConsultTodoUseCaseImpl';
 
 @Controller('todo')
 export class TodoController {
-  constructor(
-    private readonly registerTodoUseCase: RegisterTodoUseCaseImpl,
-    private readonly consultTodoUseCase: ConsultTodoUseCaseImpl,
-  ) {}
-
-  @Post()
-  async register() {
-    await this.registerTodoUseCase.registerTodo({ title: '', description: '' });
-  }
-
-  @Get()
-  async getTodo() {
-    return '';
-  }
+  constructor(private readonly consultTodoUseCase: ConsultTodoUseCaseImpl) {}
 
   @Get(':todoId')
   async getTodoById(@Param('todoId', ParseIntPipe) todoId: number) {
+    console.log('read todoId', todoId);
     return await this.consultTodoUseCase.getTodoById(todoId);
   }
 }

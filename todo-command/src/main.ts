@@ -6,7 +6,6 @@ import * as process from 'process';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  console.log(process.env.KAFKA_BROKER);
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

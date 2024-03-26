@@ -11,4 +11,19 @@ export class TodoSqlRepository implements TodoRepository {
   async createTodo(data: Omit<TodoEntity, 'id'>): Promise<TodoEntity> {
     return await this.todo.save(data);
   }
+
+  async deleteTodo(todoId: number): Promise<void> {
+    await this.todo.delete({ id: todoId });
+  }
+
+  async updateTodo(
+    data: Omit<TodoEntity, 'id'>,
+    todoId: number,
+  ): Promise<void> {
+    await this.todo.update({ id: todoId }, { ...data, updated_at: new Date() });
+  }
+
+  async getTodoById(todoId: number): Promise<TodoEntity | null> {
+    return this.todo.findOne({ where: { id: todoId } });
+  }
 }

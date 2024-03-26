@@ -8,7 +8,6 @@ export class Producer implements OnApplicationBootstrap {
     @Inject('MY_CLIENT_KAFKA') private readonly client: ClientKafka,
   ) {}
   async emit(event: EventInterface) {
-    console.log('emitira');
     await this.client
       .emit(event.attributes.topic, JSON.stringify(event))
       .toPromise();
